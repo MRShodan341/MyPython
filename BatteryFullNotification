@@ -1,0 +1,21 @@
+import psutil
+import time
+from plyer import notification
+
+def check_battery():
+    battery = psutil.sensors_battery()
+    plugged = battery.power_plugged
+    percent = battery.percent
+    print(percent)
+    if percent == 99 and plugged:
+        #play_beep()
+imp        notification.notify(
+            title="Battery Full",
+            message="Your laptop battery is fully charged.",
+            timeout=10)
+l=[]
+while True:
+    check_battery()
+    # Check the battery status every 5 minutes
+    time.sleep(150)
+    
